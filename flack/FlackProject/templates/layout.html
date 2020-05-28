@@ -1,0 +1,32 @@
+<html>
+    <head>
+        {% if title %}
+            <title>{{title}}</title>
+        {% else %}
+            <title>Flack</title>
+        {% endif %}
+        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Abel&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+        {% block scripts %}
+        {% endblock scripts %}   
+    </head>
+    <body>
+        <nav class="self-nav">
+            <a class="navbar-brand" href="/">Flack</a>
+            {% block logout %}
+            {% endblock logout %}
+        </nav>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div>{{message}}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block body %}
+        {% endblock body %}
+    </body>
+</html>

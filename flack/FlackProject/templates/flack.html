@@ -1,0 +1,41 @@
+{% extends 'layout.html' %}
+{% block scripts%}
+    <script> 
+        localStorage.setItem('channel', '{{channel}}');
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
+    <script src="{{url_for('static', filename='index.js')}}" ></script>
+{% endblock scripts %}
+{% block logout %}
+    <button id='logout' type="button" class="btn btn-outline-danger">Log out</button>
+{% endblock logout %}
+{% block body %}
+    <div class ='content-container'>
+        <div id='title'>
+            <h1>Messages</h1>
+        </div>
+        <div id='input-form'>
+            <form action="" id='form'>  
+                <input type="text" placeholder="Create new channel" id='name'>
+                <button id ='new-channel'>Create Channel</button>
+            </form>
+        </div>
+        <div id='channel-list'>
+            {% for channel in channelList %}
+                <div class="channel-btn" data-channelname="{{channel}}">{{channel}}</div>
+            {% endfor %}
+        </div>
+        <div id='send-message'>
+            <form action="" id='message'>
+                <input type="text" placeholder="New message" id='content'>
+                <button id ='new-message'>Send</button>
+            </form>
+        </div>
+        <div id='messages'></div>
+        <div id='title-2'>
+            <h1>Participants</h1>
+        </div>
+        <div id='join-list'></div>
+    </div>
+    
+{% endblock body %}
